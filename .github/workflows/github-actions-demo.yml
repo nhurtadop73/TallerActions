@@ -9,8 +9,8 @@ on:
   workflow_dispatch:
     inputs: 
       environment: 
-        description: 'Produccion'
-        type: Environment
+        description: 'Environment to deploy to'
+        type: environment
         required: true
 jobs:
   Build:
@@ -44,11 +44,11 @@ jobs:
           echo "🧪 Testing..."
           sleep 15
 
-  Production:
+  Produccion:
     runs-on: ubuntu-latest
     needs: [Test, Load-Test]
     environment:
-      name: Production
+      name: Produccion
       url: https://writeabout.net
     if: github.event.inputs.environment == 'Production'
     steps:
